@@ -2,12 +2,14 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '../../roles/models/role.model';
 import { UserRoles } from '../../roles/models/userRoles.model';
+import { Task } from '../../tasks/models/task.model';
 
 @Table({ tableName: 'users' })
 export class User extends Model<User> {
@@ -41,4 +43,7 @@ export class User extends Model<User> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasMany(() => Task)
+  tasks: Task[];
 }

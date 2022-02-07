@@ -4,7 +4,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function start() {
   const port = process.env.PORT || 3001;
-  const app = await NestFactory.create(appModule);
+  const app = await NestFactory.create(appModule, {
+    logger: ['error'],
+  });
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('REST API for ToDo application')
