@@ -9,13 +9,13 @@ async function start() {
   });
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('REST API for ToDo application')
+    .setTitle('REST API for JusticePortal')
     .setDescription('REST API documentation')
-    .setVersion('0.0.1')
+    .setVersion('0.0.5')
     .build();
 
   const swagger = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('/api/doc', app, swagger);
+  SwaggerModule.setup('', app, swagger);
 
   await app.listen(port, async () => {
     console.log(`Server started on http://localhost:${port}`);

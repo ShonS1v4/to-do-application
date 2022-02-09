@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserDto } from './dto/user.dto';
 import { User } from './models/user.model';
 import {
   ApiBadRequestResponse,
@@ -19,19 +18,11 @@ import { SetBanDto } from './dto/setBan.dto';
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @ApiOperation({ description: 'Create new user' })
-  @ApiOkResponse({ status: 201, type: User })
-  @ApiBadRequestResponse()
-  @Post()
-  create(@Body() userDto: UserDto): Promise<User | undefined> {
-    return this.userService.create(userDto);
-  }
-
   @ApiOperation({ description: 'Get all registered users' })
   @ApiOkResponse({ status: 200, type: [User] })
   @ApiBadRequestResponse()
   @UseGuards(JwtGuard)
-  @Get()
+  @Get('/getAll')
   getAll(): Promise<User[] | undefined> {
     return this.userService.getAllUsers();
   }
