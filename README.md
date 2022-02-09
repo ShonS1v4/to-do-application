@@ -12,8 +12,7 @@
 - ⚠️⚠️ TOKEN EXPIRES IN 24 HOURS ⚠️⚠️
 
 ### How  to check documentation
-- Open http://localhost:3001/api/doc
-
+- Open http://localhost:3001/
 
 ### What this API can do now? 🤯
 - Register new users
