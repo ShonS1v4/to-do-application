@@ -17,11 +17,13 @@ export class UsersService {
     try {
       const user = await this.userRepo.create(dto);
       const role = await this.roleService.getRoleByValue('USER');
-      user.roles = [role];
-      await user.$set('roles', [role.id]);
+      if (role) {
+        await user.$set('roles', [role.id]);
+        user.roles = [role];
+      }
       return user;
     } catch (e) {
-      throw new HttpException(e.errors[0].message, 400);
+      throw new HttpException(e, 400);
     }
   }
 
@@ -29,9 +31,9 @@ export class UsersService {
     return await this.userRepo.findAll({ include: { all: true } });
   }
 
-  public async geUserByName(userName: string) {
+  public async getUserByEmail(email: string) {
     return await this.userRepo.findOne({
-      where: { userName },
+      where: { email },
       include: { all: true },
     });
   }

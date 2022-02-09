@@ -22,19 +22,20 @@ export class AuthService {
   }
 
   async registration(dto: UserDto) {
-    const candidate = await this.userService.geUserByName(dto.userName);
-    if (candidate) throw new HttpException('This userName already taken', 400);
+    const candidate = await this.userService.getUserByEmail(dto.email);
+    if (candidate) throw new HttpException('This username already taken', 400);
     const hashPassword = await bc.hash(dto.password, 5);
     const user = await this.userService.create({
       ...dto,
       password: hashPassword,
     });
+    console.log(user);
     return this.generateToken(user);
   }
 
   private generateToken(user: User) {
     const payload = {
-      userName: user.userName,
+      email: user.email,
       id: user.id,
       roles: user.roles,
     };
@@ -45,7 +46,7 @@ export class AuthService {
 
   private async validateUser(dto: UserDto) {
     console.log(dto.password);
-    const user = await this.userService.geUserByName(dto.userName);
+    const user = await this.userService.getUserByEmail(dto.email);
     if (user) {
       const passwordLiquid = await bc.compare(dto.password, user.password);
       if (passwordLiquid) return user;

@@ -1,48 +1,31 @@
 <H1>REST API for ToDo App</H1>
 
 ### How to run? 🤔
-- run ```yarn install``` in your terminal
-- insert PostgresSQL connection data inside ```.env``` file
-- run ```yarn run start```
 - ⚠️⚠️DOCKER REQUIRED⚠️⚠️
+- run ```docker-compose up```
+- open ``postman collection and add role ""USER"``
+- Try to work with it 
 
 ### How to use?
 - Register new user
 - Inset token inside Postman auth variable
 - ⚠️⚠️ TOKEN EXPIRES IN 24 HOURS ⚠️⚠️
 
+### How  to check documentation
+- Open http://localhost:3001/api/doc
+
 
 ### What this API can do now? 🤯
 - Register new users
+- Register roles
+- Give roles to users
+- Hash passwords
 - JWT auth
+- JWT refresh(in progress)
 
 
 ### Future plans 🤪
-- Tasks module
-- Add new tasks for a registered users
-- Accept and send any static files:
-  - images
-  - docs
-  - videos
-  - etc...
-  - Attach new files to created tasks
-      - Delete a single tasks
-      - Delete tasks cascade
-      - Delete files
-  - Update:
-      - Task name
-      - Task description
-      - Task deadline
-- Contacts module
-    - Add contacts module
-- Messages module
-    - Add messages module
-    - Websocket
-- Features
-    - Front-end web interface
-    - Sync with apple and google calendar
-    - Sync with gmail
-    - Cloud-base file storage
+- In progress...
 
 ### P.S.
     You can finde postman collection here to test it, or use inside your app
